@@ -3,8 +3,8 @@
 var PIN_WIDTH = 50;
 var PIN_HEIGHT = 70;
 
-var MAP_X_MIN = 0 + PIN_WIDTH;
-var MAP_X_MAX = 1200 - PIN_WIDTH;
+var MAP_X_MIN = 0 + PIN_WIDTH / 2;
+var MAP_X_MAX = 1200 - PIN_WIDTH / 2;
 var MAP_Y_MIN = 130 + PIN_HEIGHT;
 var MAP_Y_MAX = 630 + PIN_HEIGHT;
 
