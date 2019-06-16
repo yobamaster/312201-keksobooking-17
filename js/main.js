@@ -1,11 +1,11 @@
 'use strict';
 
-var MAP_WIDTH = 1200;
-var MAP_Y_MIN = 130;
-var MAP_Y_MAX = 630;
-
 var PIN_WIDTH = 50;
 var PIN_HEIGHT = 70;
+
+var MAP_WIDTH = 1200;
+var MAP_Y_MIN = 130 + PIN_HEIGHT;
+var MAP_Y_MAX = 630 + PIN_HEIGHT;
 
 var OFFER_TYPES = ['palace', 'flat', 'house', 'bungalo'];
 var OFFER_TITLES = ['Объявление 1', 'Объявление 2', 'Объявление 3', 'Объявление 4', 'Объявление 5', 'Объявление 6', 'Объявление 7', 'Объявление 8'];
@@ -19,18 +19,18 @@ var getRandomElement = function (elements) {
   return elements[Math.floor(Math.random() * elements.length)];
 };
 
-var getAvatar = function (number) {
-  return 'img/avatars/user0' + number + '.png';
+var getAvatar = function (count) {
+  return 'img/avatars/user0' + count + '.png';
 };
 
 var getRandomPosition = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-var createOffer = function (number) {
+var createOffer = function (count) {
   return {
     'author': {
-      'avatar': getAvatar(number),
+      'avatar': getAvatar(count),
     },
 
     'offer': {
@@ -45,10 +45,10 @@ var createOffer = function (number) {
   };
 };
 
-var createOffers = function (number) {
+var createOffers = function (count) {
   var offers = [];
 
-  for (var i = 1; i <= number; i++) {
+  for (var i = 1; i <= count; i++) {
     var offer = createOffer(i);
     offers.push(offer);
   }
