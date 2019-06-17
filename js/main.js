@@ -3,6 +3,9 @@
 var PIN_WIDTH = 50;
 var PIN_HEIGHT = 70;
 
+var MAIN_PIN_WIDTH = 62;
+var MAIN_PIN_HEIGHT = 84;
+
 var MAP_X_MIN = 0 + PIN_WIDTH / 2;
 var MAP_X_MAX = 1200 - PIN_WIDTH / 2;
 var MAP_Y_MIN = 130 + PIN_HEIGHT;
@@ -15,6 +18,13 @@ var OFFER_QUANTITY = 8;
 var map = document.querySelector('.map');
 var mapPins = document.querySelector('.map__pins');
 var mapPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
+var mapPinMain = document.querySelector('.map__pin--main');
+
+var adForm = document.querySelector('.ad-form');
+var adFormFields = adForm.querySelectorAll('fieldset');
+var adFormAddressInput = adForm.querySelector('#address');
+var filtersForm = document.querySelector('.map__filters');
+var filtersFormFields = filtersForm.querySelectorAll('select, fieldset');
 
 var getRandomElement = function (elements) {
   return elements[Math.floor(Math.random() * elements.length)];
@@ -79,5 +89,50 @@ var renderPins = function (offers) {
   mapPins.appendChild(fragment);
 };
 
-map.classList.remove('map--faded');
-renderPins(createOffers(OFFER_QUANTITY));
+var deactivateForm = function (formFields) {
+  for (var i = 0; i < formFields.length; i++) {
+    formFields[i].setAttribute('disabled', '');
+  }
+};
+
+var activateForm = function (formFields) {
+  for (var i = 0; i < formFields.length; i++) {
+    formFields[i].removeAttribute('disabled');
+  }
+};
+
+var getMapPinMainCoordinates = function () {
+  return {
+    x: mapPinMain.offsetLeft + MAIN_PIN_WIDTH / 2,
+    y: mapPinMain.offsetTop + MAIN_PIN_HEIGHT
+  };
+};
+
+var setAdFormAddress = function (coordinates) {
+  adFormAddressInput.value = coordinates.x + ', ' + coordinates.y;
+};
+
+var mapPinMainClickHandler = function () {
+  activatePage();
+};
+
+
+var activatePage = function () {
+  map.classList.remove('map--faded');
+  adForm.classList.remove('ad-form--disabled');
+  renderPins(createOffers(OFFER_QUANTITY));
+  activateForm(adFormFields);
+  activateForm(filtersFormFields);
+  setAdFormAddress(getMapPinMainCoordinates());
+
+  mapPinMain.removeEventListener('mouseup', mapPinMainClickHandler);
+};
+
+var resetState = function () {
+  deactivateForm(adFormFields);
+  deactivateForm(filtersFormFields);
+
+  mapPinMain.addEventListener('mouseup', mapPinMainClickHandler);
+};
+
+resetState();
