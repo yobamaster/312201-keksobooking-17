@@ -112,11 +112,6 @@ var setAdFormAddress = function (coordinates) {
   adFormAddressInput.value = coordinates.x + ', ' + coordinates.y;
 };
 
-var mapPinMainClickHandler = function () {
-  activatePage();
-};
-
-
 var activatePage = function () {
   map.classList.remove('map--faded');
   adForm.classList.remove('ad-form--disabled');
@@ -126,6 +121,10 @@ var activatePage = function () {
   setAdFormAddress(getMapPinMainCoordinates());
 
   mapPinMain.removeEventListener('mouseup', mapPinMainClickHandler);
+};
+
+var mapPinMainClickHandler = function () {
+  activatePage();
 };
 
 var resetState = function () {
