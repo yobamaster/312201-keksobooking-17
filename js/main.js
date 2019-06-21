@@ -44,6 +44,8 @@ var adFormTitleInput = adForm.querySelector('#title');
 var adFormAddressInput = adForm.querySelector('#address');
 var adFormPriceInput = adForm.querySelector('#price');
 var adFormTypeSelect = adForm.querySelector('#type');
+var adFormCapacitySelect = adForm.querySelector('#capacity');
+var adFormRoomNumberSelect = adForm.querySelector('#room_number');
 var adFormTimeField = adForm.querySelector('.ad-form__element--time');
 var adFormCheckInTimeSelect = adForm.querySelector('#timein');
 var adFormCheckOutTimeSelect = adForm.querySelector('#timeout');
@@ -170,6 +172,36 @@ var timeChangeHandler = function (evt) {
   }
 };
 
+var capacityChangeHandler = function (evt) {
+  var value = evt.target.value;
+
+  if (value === '1') {
+    adFormCapacitySelect.options[0].setAttribute('disabled', true);
+    adFormCapacitySelect.options[1].setAttribute('disabled', true);
+    adFormCapacitySelect.options[2].removeAttribute('disabled');
+    adFormCapacitySelect.options[3].setAttribute('disabled', true);
+    adFormCapacitySelect.value = 1;
+  } else if (value === '2') {
+    adFormCapacitySelect.options[0].setAttribute('disabled', true);
+    adFormCapacitySelect.options[1].removeAttribute('disabled');
+    adFormCapacitySelect.options[2].removeAttribute('disabled');
+    adFormCapacitySelect.options[3].setAttribute('disabled', true);
+    adFormCapacitySelect.value = 2;
+  } else if (value === '3') {
+    adFormCapacitySelect.options[0].removeAttribute('disabled');
+    adFormCapacitySelect.options[1].removeAttribute('disabled');
+    adFormCapacitySelect.options[2].removeAttribute('disabled');
+    adFormCapacitySelect.options[3].setAttribute('disabled', true);
+    adFormCapacitySelect.value = 3;
+  } else if (value === '100') {
+    adFormCapacitySelect.options[0].setAttribute('disabled', true);
+    adFormCapacitySelect.options[1].setAttribute('disabled', true);
+    adFormCapacitySelect.options[2].setAttribute('disabled', true);
+    adFormCapacitySelect.options[3].removeAttribute('disabled');
+    adFormCapacitySelect.value = 0;
+  }
+};
+
 // Кастомная валидация полей формы
 
 var adFormTitleInputValidityCheck = function () {
@@ -214,7 +246,6 @@ var mapPinMainMoveHandler = function (evt) {
     }
 
     isPageActive = true;
-
 
     var shift = {
       x: coordinates.x - moveEvt.clientX,
@@ -262,12 +293,14 @@ var activatePage = function () {
   map.classList.remove('map--faded');
   adForm.classList.remove('ad-form--disabled');
 
-  renderPins(createOffers(OFFER_QUANTITY));
   activateForm(adFormFields);
   activateForm(filtersFormFields);
-  setAdFormAddress(getMapPinMainCoordinates());
+  renderPins(createOffers(OFFER_QUANTITY));
+
+  mapPinMain.removeEventListener('click', activatePage);
 
   adFormTypeSelect.addEventListener('change', priceChangeHandler);
+  adFormRoomNumberSelect.addEventListener('change', capacityChangeHandler);
   adFormTimeField.addEventListener('change', timeChangeHandler);
   adFormTitleInput.addEventListener('invalid', adFormTitleInputValidityCheck);
   adFormPriceInput.addEventListener('invalid', adFormPriceInputValidityCheck);
@@ -279,11 +312,13 @@ var resetState = function () {
   isPageActive = false;
 
   adFormTypeSelect.removeEventListener('change', priceChangeHandler);
+  adFormRoomNumberSelect.removeEventListener('change', capacityChangeHandler);
   adFormTimeField.removeEventListener('change', timeChangeHandler);
   adFormTitleInput.removeEventListener('invalid', adFormTitleInputValidityCheck);
   adFormPriceInput.removeEventListener('invalid', adFormPriceInputValidityCheck);
 
   mapPinMain.addEventListener('mousedown', mapPinMainMoveHandler);
+  mapPinMain.addEventListener('click', activatePage);
 };
 
 resetState();
