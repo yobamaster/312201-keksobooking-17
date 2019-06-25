@@ -20,7 +20,7 @@
     window.map.mapPinMain.removeEventListener('click', activatePage);
 
     window.form.adFormTypeSelect.addEventListener('change', window.form.priceChangeHandler);
-    // window.form.adFormRoomNumberSelect.addEventListener('change', window.form.capacityChangeHandler);
+    window.form.adFormRoomNumberSelect.addEventListener('change', window.form.capacityChangeHandler);
     window.form.adFormTimeField.addEventListener('change', window.form.timeChangeHandler);
     window.form.adFormTitleInput.addEventListener('invalid', window.form.adFormTitleInputValidityCheck);
     window.form.adFormPriceInput.addEventListener('invalid', window.form.adFormPriceInputValidityCheck);
@@ -32,8 +32,7 @@
     isPageActive = false;
 
     window.form.adFormTypeSelect.removeEventListener('change', window.form.priceChangeHandler);
-    window.form.adFormRoomNumberSelect.addEventListener('change', window.form.capacityChangeHandler);
-    // window.form.adFormRoomNumberSelect.removeEventListener('change', window.form.capacityChangeHandler);
+    window.form.adFormRoomNumberSelect.removeEventListener('change', window.form.capacityChangeHandler);
     window.form.adFormTimeField.removeEventListener('change', window.form.timeChangeHandler);
     window.form.adFormTitleInput.removeEventListener('invalid', window.form.adFormTitleInputValidityCheck);
     window.form.adFormPriceInput.removeEventListener('invalid', window.form.adFormPriceInputValidityCheck);
