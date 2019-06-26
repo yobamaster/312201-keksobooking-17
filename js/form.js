@@ -121,26 +121,30 @@
     }
   };
 
+  var addFormEventListeners = function () {
+    adFormTypeSelect.addEventListener('change', priceChangeHandler);
+    adFormRoomNumberSelect.addEventListener('change', capacityChangeHandler);
+    adFormTimeField.addEventListener('change', timeChangeHandler);
+    adFormTitleInput.addEventListener('invalid', adFormTitleInputValidityCheck);
+    adFormPriceInput.addEventListener('invalid', adFormPriceInputValidityCheck);
+  };
+
+  var removeFormEventListeners = function () {
+    adFormTypeSelect.removeEventListener('change', priceChangeHandler);
+    adFormRoomNumberSelect.removeEventListener('change', capacityChangeHandler);
+    adFormTimeField.removeEventListener('change', timeChangeHandler);
+    adFormTitleInput.removeEventListener('invalid', adFormTitleInputValidityCheck);
+    adFormPriceInput.removeEventListener('invalid', adFormPriceInputValidityCheck);
+  };
+
   window.form = {
     adForm: adForm,
     adFormFields: adFormFields,
-    adFormTitleInput: adFormTitleInput,
-    adFormAddressInput: adFormAddressInput,
-    adFormPriceInput: adFormPriceInput,
-    adFormTypeSelect: adFormTypeSelect,
-    adFormCapacitySelect: adFormCapacitySelect,
-    adFormRoomNumberSelect: adFormRoomNumberSelect,
-    adFormTimeField: adFormTimeField,
-    adFormCheckInTimeSelect: adFormCheckInTimeSelect,
-    adFormCheckOutTimeSelect: adFormCheckOutTimeSelect,
     deactivateForm: deactivateForm,
     activateForm: activateForm,
     setAdFormAddress: setAdFormAddress,
-    priceChangeHandler: priceChangeHandler,
-    timeChangeHandler: timeChangeHandler,
-    capacityChangeHandler: capacityChangeHandler,
-    adFormTitleInputValidityCheck: adFormTitleInputValidityCheck,
-    adFormPriceInputValidityCheck: adFormPriceInputValidityCheck
+    addFormEventListeners: addFormEventListeners,
+    removeFormEventListeners: removeFormEventListeners
   };
 
 })();

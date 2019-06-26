@@ -19,7 +19,7 @@
     left: 0
   };
 
-  var map = document.querySelector('.map');
+  var mapMain = document.querySelector('.map');
   var mapPins = document.querySelector('.map__pins');
   var mapPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
   var mapPinMain = document.querySelector('.map__pin--main');
@@ -119,12 +119,12 @@
     document.addEventListener('mouseup', mouseUpHandler);
   };
 
-  window.map = {
+  window.cityMap = {
     MAP_X_MIN: MAP_X_MIN,
     MAP_X_MAX: MAP_X_MAX,
     MAP_Y_MIN: MAP_Y_MIN,
     MAP_Y_MAX: MAP_Y_MAX,
-    map: map,
+    mapMain: mapMain,
     mapPinMain: mapPinMain,
     renderPins: renderPins,
     mapPinMainMoveHandler: mapPinMainMoveHandler

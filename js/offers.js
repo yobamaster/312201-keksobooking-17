@@ -34,8 +34,8 @@
       },
 
       'location': {
-        'x': getRandomPosition(window.map.MAP_X_MIN, window.map.MAP_X_MAX),
-        'y': getRandomPosition(window.map.MAP_Y_MIN, window.map.MAP_Y_MAX),
+        'x': getRandomPosition(window.cityMap.MAP_X_MIN, window.cityMap.MAP_X_MAX),
+        'y': getRandomPosition(window.cityMap.MAP_Y_MIN, window.cityMap.MAP_Y_MAX),
       }
     };
   };
