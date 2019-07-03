@@ -137,6 +137,19 @@
     adFormPriceInput.removeEventListener('invalid', adFormPriceInputValidityCheck);
   };
 
+  var formSuccessHandler = function () {
+    window.backend.showSuccess();
+  };
+
+  var formErrorHandler = function () {
+    window.backend.showError();
+  };
+
+  adForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(adForm), formSuccessHandler, formErrorHandler);
+  });
+
   window.form = {
     adForm: adForm,
     adFormFields: adFormFields,
