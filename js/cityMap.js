@@ -48,14 +48,14 @@
     mapPins.appendChild(fragment);
   };
 
+  // Перемещение маркера
+
   var getMapPinMainCoordinates = function () {
     return {
       x: mapPinMain.offsetLeft + MAIN_PIN_WIDTH / 2,
       y: mapPinMain.offsetTop + MAIN_PIN_HEIGHT
     };
   };
-
-  // Перемещение маркера
 
   var coordinates = {
     x: null,
