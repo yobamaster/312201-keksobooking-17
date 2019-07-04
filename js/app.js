@@ -15,7 +15,6 @@
 
     window.form.activateForm(window.form.adFormFields);
     window.form.activateForm(filtersFormFields);
-    // window.cityMap.renderPins(window.offers.createOffers(window.offers.OFFER_QUANTITY));
     window.backend.load(window.cityMap.renderPins, window.backend.showError);
 
     window.cityMap.mapPinMain.removeEventListener('click', activatePage);
