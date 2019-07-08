@@ -25,6 +25,7 @@
   var resetState = function () {
     window.form.deactivateForm(window.form.adFormFields);
     window.form.deactivateForm(filtersFormFields);
+    window.cityMap.removePins();
     isPageActive = false;
 
     window.form.removeFormEventListeners();

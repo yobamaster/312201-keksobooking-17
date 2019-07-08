@@ -48,6 +48,13 @@
     mapPins.appendChild(fragment);
   };
 
+  var removePins = function () {
+    var pinsList = document.querySelectorAll('.map__pins > button:not(.map__pin--main)');
+    pinsList.forEach(function (pin) {
+      pin.remove();
+    });
+  };
+
   // Перемещение маркера
 
   var getMapPinMainCoordinates = function () {
@@ -127,6 +134,7 @@
     mapMain: mapMain,
     mapPinMain: mapPinMain,
     renderPins: renderPins,
+    removePins: removePins,
     mapPinMainMoveHandler: mapPinMainMoveHandler
   };
 
