@@ -17,15 +17,15 @@
   // Обработка формы
 
   var deactivateForm = function (formFields) {
-    for (var i = 0; i < formFields.length; i++) {
-      formFields[i].setAttribute('disabled', '');
-    }
+    formFields.forEach(function (element) {
+      element.setAttribute('disabled');
+    });
   };
 
   var activateForm = function (formFields) {
-    for (var i = 0; i < formFields.length; i++) {
-      formFields[i].removeAttribute('disabled');
-    }
+    formFields.forEach(function (element) {
+      element.removeAttribute('disabled');
+    });
   };
 
   var setAdFormAddress = function (coordinates) {
