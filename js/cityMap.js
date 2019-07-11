@@ -46,15 +46,16 @@
   var renderPins = function (offers) {
     var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < offers.length; i++) {
-      fragment.appendChild(createPin(offers[i]));
-    }
+    offers.forEach(function (element) {
+      fragment.appendChild(createPin(element));
+    });
 
     mapPins.appendChild(fragment);
   };
 
   var removePins = function () {
     var pinsList = document.querySelectorAll('.map__pins > button:not(.map__pin--main)');
+
     pinsList.forEach(function (pin) {
       pin.remove();
     });
