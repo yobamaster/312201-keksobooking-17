@@ -138,11 +138,11 @@
   };
 
   var formSuccessHandler = function () {
-    window.utils.showSuccess();
+    window.notifications.showSuccess();
   };
 
   var formErrorHandler = function () {
-    window.utils.showError();
+    window.notifications.showError();
   };
 
   adForm.addEventListener('submit', function (evt) {
