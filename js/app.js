@@ -32,7 +32,7 @@
     window.form.activateForm(window.form.adFormFields);
     window.form.activateForm(filtersFormFields);
 
-    window.backend.load(successHandler, window.backend.showError);
+    window.backend.load(successHandler, window.utils.addError);
 
     window.cityMap.mapPinMain.removeEventListener('click', activatePage);
 

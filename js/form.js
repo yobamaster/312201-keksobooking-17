@@ -9,10 +9,18 @@
   var adFormPriceInput = adForm.querySelector('#price');
   var adFormTypeSelect = adForm.querySelector('#type');
   var adFormCapacitySelect = adForm.querySelector('#capacity');
+  var adFormCapacitySelectOptions = adFormCapacitySelect.querySelectorAll('option');
   var adFormRoomNumberSelect = adForm.querySelector('#room_number');
   var adFormTimeField = adForm.querySelector('.ad-form__element--time');
   var adFormCheckInTimeSelect = adForm.querySelector('#timein');
   var adFormCheckOutTimeSelect = adForm.querySelector('#timeout');
+
+  var capacityMap = {
+    '1': [1],
+    '2': [1, 2],
+    '3': [1, 2, 3],
+    '100': [0]
+  };
 
   // Обработка формы
 
@@ -62,37 +70,19 @@
 
   var capacityChangeHandler = function (evt) {
     var value = evt.target.value;
+    var availableOptions = capacityMap[value];
 
-    switch (value) {
-      case '1':
-        adFormCapacitySelect.options[0].setAttribute('disabled', true);
-        adFormCapacitySelect.options[1].setAttribute('disabled', true);
-        adFormCapacitySelect.options[2].removeAttribute('disabled');
-        adFormCapacitySelect.options[3].setAttribute('disabled', true);
-        adFormCapacitySelect.value = 1;
-        break;
-      case '2':
-        adFormCapacitySelect.options[0].setAttribute('disabled', true);
-        adFormCapacitySelect.options[1].removeAttribute('disabled');
-        adFormCapacitySelect.options[2].removeAttribute('disabled');
-        adFormCapacitySelect.options[3].setAttribute('disabled', true);
-        adFormCapacitySelect.value = 2;
-        break;
-      case '3':
-        adFormCapacitySelect.options[0].setAttribute('disabled', true);
-        adFormCapacitySelect.options[1].removeAttribute('disabled');
-        adFormCapacitySelect.options[2].removeAttribute('disabled');
-        adFormCapacitySelect.options[3].setAttribute('disabled', true);
-        adFormCapacitySelect.value = 2;
-        break;
-      case '100':
-        adFormCapacitySelect.options[0].setAttribute('disabled', true);
-        adFormCapacitySelect.options[1].setAttribute('disabled', true);
-        adFormCapacitySelect.options[2].setAttribute('disabled', true);
-        adFormCapacitySelect.options[3].removeAttribute('disabled');
-        adFormCapacitySelect.value = 0;
-        break;
-    }
+    adFormCapacitySelect.value = capacityMap[value][0];
+
+    adFormCapacitySelectOptions.forEach(function (element) {
+      var capacityValue = parseInt(element.value, 10);
+
+      if (availableOptions.indexOf(capacityValue) < 0) {
+        element.setAttribute('disabled', true);
+      } else {
+        element.removeAttribute('disabled');
+      }
+    });
   };
 
   // Кастомная валидация полей формы
