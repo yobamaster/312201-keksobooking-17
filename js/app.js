@@ -2,8 +2,6 @@
 
 (function () {
 
-  var isPageActive = false;
-
   var filtersForm = document.querySelector('.map__filters');
   var filtersFormFields = filtersForm.querySelectorAll('select, fieldset');
 
@@ -45,17 +43,11 @@
     window.form.deactivateForm(window.form.adFormFields);
     window.form.deactivateForm(filtersFormFields);
     window.cityMap.removePins();
-    isPageActive = false;
 
     window.form.removeFormEventListeners();
 
     window.cityMap.mapPinMain.addEventListener('mousedown', window.cityMap.mapPinMainMoveHandler);
     window.cityMap.mapPinMain.addEventListener('click', activatePage);
-  };
-
-  window.app = {
-    isPageActive: isPageActive,
-    activatePage: activatePage,
   };
 
   resetState();

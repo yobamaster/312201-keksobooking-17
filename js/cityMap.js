@@ -78,12 +78,6 @@
   var mouseMoveHandler = function (evt) {
     evt.preventDefault();
 
-    if (!window.app.isPageActive) {
-      window.app.activatePage();
-    }
-
-    window.app.isPageActive = true;
-
     var shift = {
       x: coordinates.x - evt.clientX,
       y: coordinates.y - evt.clientY
