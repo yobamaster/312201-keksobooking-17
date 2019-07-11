@@ -19,6 +19,11 @@
     left: 0
   };
 
+  var mapPinMainInitialCoordinate = {
+    x: 570,
+    y: 375
+  };
+
   var mapMain = document.querySelector('.map');
   var mapPins = document.querySelector('.map__pins');
   var mapPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
@@ -78,12 +83,6 @@
   var mouseMoveHandler = function (evt) {
     evt.preventDefault();
 
-    if (!window.app.isPageActive) {
-      window.app.activatePage();
-    }
-
-    window.app.isPageActive = true;
-
     var shift = {
       x: coordinates.x - evt.clientX,
       y: coordinates.y - evt.clientY
@@ -132,6 +131,11 @@
     document.addEventListener('mouseup', mouseUpHandler);
   };
 
+  var mapPinMainResetCoordinates = function (data) {
+    mapPinMain.style.left = data.x + 'px';
+    mapPinMain.style.top = data.y + 'px';
+  };
+
   window.cityMap = {
     MAP_X_MIN: MAP_X_MIN,
     MAP_X_MAX: MAP_X_MAX,
@@ -141,7 +145,9 @@
     mapPinMain: mapPinMain,
     renderPins: renderPins,
     removePins: removePins,
-    mapPinMainMoveHandler: mapPinMainMoveHandler
+    mapPinMainMoveHandler: mapPinMainMoveHandler,
+    mapPinMainResetCoordinates: mapPinMainResetCoordinates,
+    mapPinMainInitialCoordinate: mapPinMainInitialCoordinate
   };
 
 })();
