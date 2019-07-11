@@ -4,6 +4,7 @@
 
   var filtersForm = document.querySelector('.map__filters');
   var filtersFormFields = filtersForm.querySelectorAll('select, fieldset');
+  var resetButton = document.querySelector('.ad-form__reset');
 
   var pins = [];
 
@@ -37,18 +38,24 @@
 
     window.form.addFormEventListeners();
     filtersForm.addEventListener('change', updatePins);
+    resetButton.addEventListener('click', resetState);
   };
 
   var resetState = function () {
+    window.cityMap.mapMain.classList.add('map--faded');
+    window.cityMap.removePins();
+    window.cityMap.mapPinMainResetCoordinates(window.cityMap.mapPinMainInitialCoordinate);
+
+    window.form.adForm.classList.add('ad-form--disabled');
     window.form.deactivateForm(window.form.adFormFields);
     window.form.deactivateForm(filtersFormFields);
-    window.cityMap.removePins();
-
     window.form.removeFormEventListeners();
+
 
     window.cityMap.mapPinMain.addEventListener('mousedown', window.cityMap.mapPinMainMoveHandler);
     window.cityMap.mapPinMain.addEventListener('click', activatePage);
   };
+
 
   resetState();
 
