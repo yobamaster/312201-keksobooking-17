@@ -21,6 +21,7 @@
       .filter(window.filters.filterTypes)
       .slice(0, 5);
 
+    window.card.closeCardPopup();
     window.cityMap.removePins();
     window.cityMap.renderPins(updatedPins);
   };

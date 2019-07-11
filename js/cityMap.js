@@ -26,14 +26,19 @@
 
   // Рендер меток
 
-  var createPin = function (offer) {
+  var createPin = function (data) {
     var mapPin = mapPinTemplate.cloneNode(true);
     var img = mapPin.querySelector('img');
 
-    mapPin.style.left = offer.location.x - PIN_WIDTH / 2 + 'px';
-    mapPin.style.top = offer.location.y - PIN_HEIGHT + 'px';
-    img.src = offer.author.avatar;
-    img.alt = offer.offer.title;
+    mapPin.style.left = data.location.x - PIN_WIDTH / 2 + 'px';
+    mapPin.style.top = data.location.y - PIN_HEIGHT + 'px';
+    img.src = data.author.avatar;
+    img.alt = data.offer.title;
+
+    mapPin.addEventListener('click', function () {
+      window.card.showCardPopup(data);
+      mapPin.classList.add('map__pin--active');
+    });
 
     return mapPin;
   };
