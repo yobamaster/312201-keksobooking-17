@@ -32,7 +32,7 @@
     window.form.activateForm(window.form.adFormFields);
     window.form.activateForm(filtersFormFields);
 
-    window.backend.load(successHandler, window.errors.addError);
+    window.backend.load(successHandler, window.notifications.showLoadError);
 
     window.cityMap.mapPinMain.removeEventListener('click', activatePage);
 
@@ -51,7 +51,7 @@
     window.form.deactivateForm(filtersFormFields);
     window.form.removeFormEventListeners();
 
-    window.errors.removeError();
+    window.notifications.removeLoadError();
 
     window.cityMap.mapPinMain.addEventListener('mousedown', window.cityMap.mapPinMainMoveHandler);
     window.cityMap.mapPinMain.addEventListener('click', activatePage);
