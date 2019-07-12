@@ -2,6 +2,7 @@
 
 (function () {
 
+  var adForm = document.querySelector('.ad-form');
   var filtersForm = document.querySelector('.map__filters');
   var filtersFormFields = filtersForm.querySelectorAll('select, fieldset');
   var resetButton = document.querySelector('.ad-form__reset');
@@ -10,7 +11,7 @@
 
   // Инициализация страницы
 
-  var successHandler = function (data) {
+  var loadSuccessHandler = function (data) {
     pins = data;
     updatePins();
   };
@@ -25,6 +26,21 @@
     window.cityMap.renderPins(updatedPins);
   };
 
+  var formSuccessHandler = function () {
+    resetState();
+    window.notifications.showSuccess();
+  };
+
+  var formErrorHandler = function () {
+    resetState();
+    window.notifications.showError();
+  };
+
+  adForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(adForm), formSuccessHandler, formErrorHandler);
+  });
+
   var activatePage = function () {
     window.cityMap.mapMain.classList.remove('map--faded');
     window.form.adForm.classList.remove('ad-form--disabled');
@@ -32,7 +48,7 @@
     window.form.activateForm(window.form.adFormFields);
     window.form.activateForm(filtersFormFields);
 
-    window.backend.load(successHandler, window.notifications.showLoadError);
+    window.backend.load(loadSuccessHandler, window.notifications.showLoadError);
 
     window.cityMap.mapPinMain.removeEventListener('click', activatePage);
 
