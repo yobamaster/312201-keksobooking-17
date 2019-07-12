@@ -26,7 +26,7 @@
 
   var deactivateForm = function (formFields) {
     formFields.forEach(function (element) {
-      element.setAttribute('disabled', '');
+      element.setAttribute('disabled', true);
     });
   };
 

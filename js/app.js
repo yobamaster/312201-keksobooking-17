@@ -32,7 +32,7 @@
     window.form.activateForm(window.form.adFormFields);
     window.form.activateForm(filtersFormFields);
 
-    window.backend.load(successHandler, window.utils.addError);
+    window.backend.load(successHandler, window.errors.addError);
 
     window.cityMap.mapPinMain.removeEventListener('click', activatePage);
 
@@ -51,11 +51,11 @@
     window.form.deactivateForm(filtersFormFields);
     window.form.removeFormEventListeners();
 
+    window.errors.removeError();
 
     window.cityMap.mapPinMain.addEventListener('mousedown', window.cityMap.mapPinMainMoveHandler);
     window.cityMap.mapPinMain.addEventListener('click', activatePage);
   };
-
 
   resetState();
 
