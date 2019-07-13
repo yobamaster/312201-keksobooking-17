@@ -2,7 +2,6 @@
 
 (function () {
 
-  var adForm = document.querySelector('.ad-form');
   var filtersForm = document.querySelector('.map__filters');
   var filtersFormFields = filtersForm.querySelectorAll('select, fieldset');
   var resetButton = document.querySelector('.ad-form__reset');
@@ -28,17 +27,16 @@
 
   var formSuccessHandler = function () {
     resetState();
-    window.notifications.showSuccess();
+    window.notifications.showFormSuccess();
   };
 
   var formErrorHandler = function () {
-    resetState();
-    window.notifications.showError();
+    window.notifications.showFormError();
   };
 
-  adForm.addEventListener('submit', function (evt) {
+  window.form.adForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    window.backend.save(new FormData(adForm), formSuccessHandler, formErrorHandler);
+    window.backend.save(new FormData(window.form.adForm), formSuccessHandler, formErrorHandler);
   });
 
   var activatePage = function () {
@@ -66,6 +64,7 @@
     window.form.deactivateForm(window.form.adFormFields);
     window.form.deactivateForm(filtersFormFields);
     window.form.removeFormEventListeners();
+    window.form.adForm.reset();
 
     window.notifications.removeLoadError();
 
