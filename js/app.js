@@ -26,11 +26,13 @@
   };
 
   var formSuccessHandler = function () {
+    window.card.closeCardPopup();
     resetState();
     window.notifications.showFormSuccess();
   };
 
   var formErrorHandler = function () {
+    window.card.closeCardPopup();
     window.notifications.showFormError();
   };
 
@@ -65,6 +67,8 @@
     window.form.deactivateForm(filtersFormFields);
     window.form.removeFormEventListeners();
     window.form.adForm.reset();
+    window.filters.filtersForm.reset();
+
 
     window.notifications.removeLoadError();
 
