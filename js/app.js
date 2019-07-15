@@ -2,6 +2,8 @@
 
 (function () {
 
+  var NUMBER_OF_PINS = 5;
+
   var filtersForm = document.querySelector('.map__filters');
   var filtersFormFields = filtersForm.querySelectorAll('select, fieldset');
   var resetButton = document.querySelector('.ad-form__reset');
@@ -15,15 +17,19 @@
     updatePins();
   };
 
-  var updatePins = function () {
+  var updatePins = window.utils.debounce(function () {
     var updatedPins = pins
       .filter(window.filters.filterTypes)
-      .slice(0, 5);
+      .filter(window.filters.filterPrice)
+      .filter(window.filters.filterRooms)
+      .filter(window.filters.filterGuests)
+      .filter(window.filters.filterFeatures)
+      .slice(0, NUMBER_OF_PINS);
 
     window.card.closeCardPopup();
     window.cityMap.removePins();
     window.cityMap.renderPins(updatedPins);
-  };
+  });
 
   var formSuccessHandler = function () {
     window.card.closeCardPopup();
