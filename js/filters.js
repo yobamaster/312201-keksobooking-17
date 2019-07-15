@@ -12,7 +12,8 @@
   };
 
   window.filters = {
-    filterTypes: filterTypes
+    filterTypes: filterTypes,
+    filtersForm: filtersForm
   };
 
 })();

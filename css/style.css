@@ -1248,3 +1248,15 @@ fieldset {
   outline: none;
   opacity: 0.6;
 }
+
+.error__message--load {
+  position: absolute;
+  left: 0;
+  right:0;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 100;
+  background-color: red;
+  text-align: center;
+  font-size: 30px;
+}

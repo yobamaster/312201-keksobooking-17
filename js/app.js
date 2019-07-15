@@ -10,7 +10,7 @@
 
   // Инициализация страницы
 
-  var successHandler = function (data) {
+  var loadSuccessHandler = function (data) {
     pins = data;
     updatePins();
   };
@@ -25,6 +25,22 @@
     window.cityMap.renderPins(updatedPins);
   };
 
+  var formSuccessHandler = function () {
+    window.card.closeCardPopup();
+    resetState();
+    window.notifications.showFormSuccess();
+  };
+
+  var formErrorHandler = function () {
+    window.card.closeCardPopup();
+    window.notifications.showFormError();
+  };
+
+  window.form.adForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(window.form.adForm), formSuccessHandler, formErrorHandler);
+  });
+
   var activatePage = function () {
     window.cityMap.mapMain.classList.remove('map--faded');
     window.form.adForm.classList.remove('ad-form--disabled');
@@ -32,7 +48,7 @@
     window.form.activateForm(window.form.adFormFields);
     window.form.activateForm(filtersFormFields);
 
-    window.backend.load(successHandler, window.utils.addError);
+    window.backend.load(loadSuccessHandler, window.notifications.showLoadError);
 
     window.cityMap.mapPinMain.removeEventListener('click', activatePage);
 
@@ -50,12 +66,15 @@
     window.form.deactivateForm(window.form.adFormFields);
     window.form.deactivateForm(filtersFormFields);
     window.form.removeFormEventListeners();
+    window.form.adForm.reset();
+    window.filters.filtersForm.reset();
 
+
+    window.notifications.removeLoadError();
 
     window.cityMap.mapPinMain.addEventListener('mousedown', window.cityMap.mapPinMainMoveHandler);
     window.cityMap.mapPinMain.addEventListener('click', activatePage);
   };
-
 
   resetState();
 
