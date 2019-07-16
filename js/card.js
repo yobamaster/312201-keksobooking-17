@@ -8,11 +8,11 @@
     'bungalo': 'Бунгало'
   };
 
-  // Рендер карточек
   var mapMain = document.querySelector('.map');
   var mapCardTemplate = document.querySelector('#card').content.querySelector('.map__card');
   var filtersContainer = mapMain.querySelector('.map__filters-container');
 
+  // Рендер карточек
   var getOfferFeatures = function (card, data) {
     var features = card.querySelector('.popup__features');
 

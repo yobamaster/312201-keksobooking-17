@@ -2,7 +2,7 @@
 
 (function () {
 
-  var NUMBER_OF_PINS = 5;
+  var MAX_NUMBER_OF_PINS = 5;
 
   var filtersForm = document.querySelector('.map__filters');
   var filtersFormFields = filtersForm.querySelectorAll('select, fieldset');
@@ -10,26 +10,31 @@
 
   var pins = [];
 
+  var filters = [
+    window.filters.filterTypes,
+    window.filters.filterPrice,
+    window.filters.filterRooms,
+    window.filters.filterGuests,
+    window.filters.filterFeatures
+  ];
+
   // Инициализация страницы
 
-  var loadSuccessHandler = function (data) {
-    pins = data;
-    updatePins();
-  };
-
   var updatePins = window.utils.debounce(function () {
-    var updatedPins = pins
-      .filter(window.filters.filterTypes)
-      .filter(window.filters.filterPrice)
-      .filter(window.filters.filterRooms)
-      .filter(window.filters.filterGuests)
-      .filter(window.filters.filterFeatures)
-      .slice(0, NUMBER_OF_PINS);
+    var updatedPins = filters.reduce(function (data, currentFilter) {
+      return data.filter(currentFilter);
+    }, pins)
+      .slice(0, MAX_NUMBER_OF_PINS);
 
     window.card.closeCardPopup();
     window.cityMap.removePins();
     window.cityMap.renderPins(updatedPins);
   });
+
+  var loadSuccessHandler = function (data) {
+    pins = data;
+    updatePins();
+  };
 
   var formSuccessHandler = function () {
     window.card.closeCardPopup();
