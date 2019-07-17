@@ -44,17 +44,17 @@
     var value = evt.target.value;
 
     if (value === 'bungalo') {
-      adFormPriceInput.setAttribute('min', window.offers.OFFER_MIN_PRICE.bungalo);
-      adFormPriceInput.setAttribute('placeholder', window.offers.OFFER_MIN_PRICE.bungalo);
+      adFormPriceInput.setAttribute('min', window.offers.OfferMinPrice.BUNGALO);
+      adFormPriceInput.setAttribute('placeholder', window.offers.OfferMinPrice.BUNGALO);
     } else if (value === 'flat') {
-      adFormPriceInput.setAttribute('min', window.offers.OFFER_MIN_PRICE.flat);
-      adFormPriceInput.setAttribute('placeholder', window.offers.OFFER_MIN_PRICE.flat);
+      adFormPriceInput.setAttribute('min', window.offers.OfferMinPrice.FLAT);
+      adFormPriceInput.setAttribute('placeholder', window.offers.OfferMinPrice.FLAT);
     } else if (value === 'house') {
-      adFormPriceInput.setAttribute('min', window.offers.OFFER_MIN_PRICE.house);
-      adFormPriceInput.setAttribute('placeholder', window.offers.OFFER_MIN_PRICE.house);
+      adFormPriceInput.setAttribute('min', window.offers.OfferMinPrice.HOUSE);
+      adFormPriceInput.setAttribute('placeholder', window.offers.OfferMinPrice.HOUSE);
     } else if (value === 'palace') {
-      adFormPriceInput.setAttribute('min', window.offers.OFFER_MIN_PRICE.palace);
-      adFormPriceInput.setAttribute('placeholder', window.offers.OFFER_MIN_PRICE.palace);
+      adFormPriceInput.setAttribute('min', window.offers.OfferMinPrice.PALACE);
+      adFormPriceInput.setAttribute('placeholder', window.offers.OfferMinPrice.PALACE);
     }
   };
 

@@ -20,19 +20,27 @@
   };
 
   var filterTypes = function (item) {
-    return housingTypeSelect.value === 'any' ? item.offer.type : item.offer.type === housingTypeSelect.value;
+    return housingTypeSelect.value === 'any'
+      ? item.offer.type
+      : item.offer.type === housingTypeSelect.value;
   };
 
   var filterPrice = function (item) {
-    return housingPriceSelect.value === 'any' ? item.offer.price : housingPriceMap[housingPriceSelect.value](item);
+    return housingPriceSelect.value === 'any'
+      ? item.offer.price
+      : housingPriceMap[housingPriceSelect.value](item);
   };
 
   var filterRooms = function (item) {
-    return housingRoomsSelect.value === 'any' ? item.offer.rooms : item.offer.rooms === parseInt(housingRoomsSelect.value, 10);
+    return housingRoomsSelect.value === 'any'
+      ? item.offer.rooms
+      : item.offer.rooms === parseInt(housingRoomsSelect.value, 10);
   };
 
   var filterGuests = function (item) {
-    return housingGuestsSelect.value === 'any' ? item.offer.guests : item.offer.guests === parseInt(housingGuestsSelect.value, 10);
+    return housingGuestsSelect.value === 'any'
+      ? item.offer.guests
+      : item.offer.guests === parseInt(housingGuestsSelect.value, 10);
   };
 
   var filterFeatures = function (item) {

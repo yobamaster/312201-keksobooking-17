@@ -2,14 +2,14 @@
 
 (function () {
 
-  var OFFER_MIN_PRICE = {
-    'bungalo': 0,
-    'flat': 1000,
-    'house': 5000,
-    'palace': 10000
+  var OfferMinPrice = {
+    BUNGALO: 0,
+    FLAT: 1000,
+    HOUSE: 5000,
+    PALACE: 10000
   };
 
   window.offers = {
-    OFFER_MIN_PRICE: OFFER_MIN_PRICE
+    OfferMinPrice: OfferMinPrice
   };
 })();

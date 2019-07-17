@@ -79,6 +79,7 @@
 
   var showCardPopup = function (data) {
     closeCardPopup();
+
     mapMain.insertBefore(renderCard(data), filtersContainer);
     document.addEventListener('keydown', cardEscapePressHandler);
   };
